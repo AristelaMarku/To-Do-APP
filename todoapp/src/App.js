@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 function App() {
    const [inpotForm,setInputForm]=useState()
    const [task, settask]=useState([])
-   
+   const [show, setShow] = useState({ onetask: false })
 
    useEffect(()=>{
     fetch ("http://localhost:3000/todo")
@@ -31,10 +31,10 @@ function App() {
     })
     .then(res => res.json())
     .then(data =>settask([...task, data]))
+    setInputForm(" ")
    }
 
    const handleDelete = (taskToDelete) => {
-     console.log(taskToDelete)
      fetch(`http://localhost:3000/todo/${taskToDelete.id}`,{
       method: "DELETE",
     })
@@ -45,13 +45,48 @@ function App() {
     })
    }
 
+   const handleUpdate = (taskToUpdate) =>{
+     setShow({[taskToUpdate.id]: !show.point})
+
+     fetch(`http://localhost:3000/todo/${taskToUpdate.id}`,{
+       method: "PATCH",
+       headers:{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        task:taskToUpdate
+      })
+      .then(res=>res.json())
+      .then(data =>console.log(data))
+    })
+   }
+
    const taskTorender = task.map((onetask)=>{
     return (
-    <div id="ul" key={onetask.id}>
+    
+    <div id="ul" key={onetask.id}>  
+    {!show[onetask.id] ?
+    (
+    <>
     <p>{onetask.task } 
     <button onClick={()=>handleDelete(onetask)}>❎</button>
-    <button>📝</button></p>
-    </div>)
+    <button onClick={()=>handleUpdate(onetask)}>📝</button>
+    </p>
+    </>
+    )
+    : 
+    (
+    <>
+    <form>
+        <input/>
+        <button>update</button>
+    </form>
+    </>
+    )}
+   </div>
+   
+    )
    })
    
    
@@ -63,7 +98,7 @@ function App() {
         <input name="todo" type="text" value={inpotForm} onChange={(e)=>setInputForm(e.target.value)}/>
         <button>Submit</button>
       </form>
-      {taskTorender}
+      {taskTorender} 
       </div>
   );
 }
