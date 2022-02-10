@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 function App() {
    const [inpotForm,setInputForm]=useState()
    const [task, settask]=useState([])
-   console.log(task)
+   
 
    useEffect(()=>{
     fetch ("http://localhost:3000/todo")
@@ -33,9 +33,25 @@ function App() {
     .then(data =>settask([...task, data]))
    }
 
+   const handleDelete = (taskToDelete) => {
+     console.log(taskToDelete)
+     fetch(`http://localhost:3000/todo/${taskToDelete.id}`,{
+      method: "DELETE",
+    })
+    .then(res => res.json())
+    .then(data=>{
+      const updateItem= task.filter((item)=> item.id !== taskToDelete.id)
+      settask(updateItem)
+    })
+   }
+
    const taskTorender = task.map((onetask)=>{
-     console.log(onetask)
-    return <p>{onetask.task}</p>
+    return (
+    <div id="ul" key={onetask.id}>
+    <p>{onetask.task } 
+    <button onClick={()=>handleDelete(onetask)}>❎</button>
+    <button>📝</button></p>
+    </div>)
    })
    
    
@@ -48,7 +64,7 @@ function App() {
         <button>Submit</button>
       </form>
       {taskTorender}
-    </div>
+      </div>
   );
 }
 
