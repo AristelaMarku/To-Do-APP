@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Todo from "./Todo";
 
 function App() {
    const [inpotForm,setInputForm]=useState()
@@ -89,11 +91,9 @@ function App() {
     {!show[onetask.id] ?
     (
     <>
-    <p>{onetask.task } 
-    <button onClick={()=>handleDelete(onetask)}>❎</button>
-    <button onClick={()=>handleUpdate(onetask)}>📝</button>
-    </p>
+    <Todo onetask ={onetask} handleDelete = {handleDelete} handleUpdate = {handleUpdate}/>
     </>
+  
     )
     : 
     (
@@ -112,14 +112,16 @@ function App() {
    
 
   return (
-    <div>
+   
+    <div className='todo-app'>
       <h2 id="title">To Do App</h2>
       <form id="inputform" onSubmit={handleSubmit}>
-        <input name="todo" type="text" value={inpotForm} onChange={(e)=>setInputForm(e.target.value)}/>
-        <button>Submit</button>
+        <TextField  id="outlined-size-small" label="To Do"name="todo" type="text" value={inpotForm} onChange={(e)=>setInputForm(e.target.value)}/>
+        <button id="submit">Submit</button>
       </form>
       {taskTorender} 
       </div>
+     
   );
 }
 
