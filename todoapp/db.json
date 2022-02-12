@@ -1,16 +1,16 @@
 {
   "todo": [
     {
-      "task": "erion shaho",
-      "id": 10
+      "task": "Clean house",
+      "id": 1
     },
     {
-      "task": "lalal",
-      "id": 11
+      "task": " Learn Redux",
+      "id": 2
     },
     {
-      "task": "aristela marku",
-      "id": 12
+      "task": "Take care of Arbi",
+      "id": 3
     }
   ]
 }

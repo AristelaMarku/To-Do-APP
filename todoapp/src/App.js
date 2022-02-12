@@ -98,9 +98,9 @@ function App() {
     : 
     (
     <>
-    <form onSubmit={handleUpdateSubmit}>
-        <input type="text" name="todo" value={updateForm} onChange={(e)=>setUpdateForm(e.target.value)}/>
-        <button>update</button>
+    <form id="edditForm" onSubmit={handleUpdateSubmit}>
+        <TextField  id="outlined-size-small" type="text" name="todo" value={updateForm} onChange={(e)=>setUpdateForm(e.target.value)}/>
+        <button id="submitupdate">Update</button>
     </form>
     </>
     )}

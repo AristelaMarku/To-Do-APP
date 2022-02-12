@@ -18,8 +18,8 @@
   border: 2px solid #5d0cff;
   outline: none;
   width: 320px;
-  background: transparent;
-  color: #fff;
+  background: whitesmoke;
+  color: #161a2b;
 }
 
 #title{
@@ -46,11 +46,58 @@
   margin-top: 9px;
   padding: 10px;
   border-radius: 8px;
-  background-color: #dbf0fe;
-  border-color: #01579b;
+  background-color: #5d0cff;;
+  border-color: #5d0cff;
 }
-.inline {
-  display: inline-block; 
+
+.todo-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px -140px;
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 118, 20, 1) 0%,
+    rgba(255, 84, 17, 1) 100%
+  );
+
+
+  padding: 16px;
+  border-radius: 5px;
+  width: 90%;
+}
+
+.todo-row:nth-child(4n + 1) {
+  background: linear-gradient(
+    90deg,
+    rgba(93, 12, 255, 1) 0%,
+    rgba(155, 0, 250, 1) 100%
+  );
+}
+
+.todo-row:nth-child(4n + 2) {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 12, 241, 1) 0%,
+    rgba(250, 0, 135, 1) 100%
+  );
+}
+
+.todo-row:nth-child(4n + 3) {
+  background: linear-gradient(
+    90deg,
+    rgba(20, 159, 255, 1) 0%,
+    rgba(17, 122, 255, 1) 100%
+  );
+}
+
+
+.icons {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
 }
 
 .btn1{
@@ -67,3 +114,21 @@
   border-color: #01579b;
 }
 
+
+
+#edditForm{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 15px -180px;
+ 
+}
+
+#submitupdate{
+  margin-left: 10px;
+  margin-top: 9px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #5d0cff;;
+  border-color: #5d0cff;
+}
